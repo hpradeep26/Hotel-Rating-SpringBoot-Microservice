@@ -1,18 +1,35 @@
-# Eclipse
+# STS / Eclipse
+.metadata/
 .classpath
 .project
-.eclipse-pmd
 .settings/
- 
-# Intellij
+
+# STS build artifacts
+bin/
+target/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Maven
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# IntelliJ (if used)
 .idea/
 *.iml
-*.iws
- 
-# Mac
-.DS_Store
- 
-# Maven
-log/
-target/
-.flattened-pom.xml
+
+# VS Code (if used)
+.vscode/
+
+# Environment config
+.env
