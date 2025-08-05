@@ -1,8 +1,0 @@
-package com.lcwd.java.microservice.userservice.model;
-
-public class Snippet {
-	public static void main(String[] args) {
-		Hotel
-	}
-}
-

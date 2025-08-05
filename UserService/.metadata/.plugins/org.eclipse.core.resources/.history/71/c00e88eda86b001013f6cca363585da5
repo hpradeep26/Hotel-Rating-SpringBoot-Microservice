@@ -1,5 +1,0 @@
-package com.lcwd.java.microservice.userservice.service;
-
-public class UserServiceImpl {
-
-}

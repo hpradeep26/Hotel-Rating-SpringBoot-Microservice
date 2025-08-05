@@ -1,5 +1,0 @@
-package com.lcwd.java.microservice.ratingservice.model;
-
-public class Hotel {
-
-}

@@ -1,5 +1,0 @@
-package com.lcwd.java.microservice.hotelservice.service;
-
-public class HotelServiceImpl {
-
-}

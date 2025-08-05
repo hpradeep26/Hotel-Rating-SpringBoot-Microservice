@@ -1,6 +1,0 @@
-package com.lcwd.java.microservice.userservice.service;
-
-public interface UserService {
-	
-
-}

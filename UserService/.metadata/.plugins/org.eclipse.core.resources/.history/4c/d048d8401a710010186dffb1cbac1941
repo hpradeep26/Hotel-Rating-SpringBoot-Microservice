@@ -1,5 +1,0 @@
-package com.lcwd.java.microservice.apigateway.config;
-
-public class SecurityConfig {
-
-}

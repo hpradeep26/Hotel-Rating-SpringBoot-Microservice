@@ -1,7 +1,0 @@
-package com.lcwd.java.microservice.userservice.config;
-
-@org.springframework.context.annotation.Configuration
-public class Configuration {
-
-	
-}

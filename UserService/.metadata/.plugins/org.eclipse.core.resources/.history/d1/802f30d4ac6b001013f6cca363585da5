@@ -1,5 +1,0 @@
-package com.lcwd.java.microservice.userservice.model;
-
-public class Rating {
-
-}

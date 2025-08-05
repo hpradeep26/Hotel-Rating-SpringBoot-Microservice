@@ -1,5 +1,0 @@
-package com.lcwd.java.microservice.ratingservice.repository;
-
-public class HotelRepository {
-
-}
