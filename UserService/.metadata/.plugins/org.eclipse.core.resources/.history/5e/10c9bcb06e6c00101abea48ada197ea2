@@ -1,0 +1,15 @@
+package com.lcwd.java.microservice.userservice.external.services;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+import com.lcwd.java.microservice.userservice.model.Rating;
+
+@FeignClient(name = "RATING-SERVICE")
+public interface RatingService {
+
+	//String url = "http://RATINGSERVICE/api/ratings/users/"+user.getUserId();
+	
+	List<Rating> getRating(Long userId)
+}

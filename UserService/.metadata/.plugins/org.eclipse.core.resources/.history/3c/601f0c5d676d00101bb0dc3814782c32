@@ -1,0 +1,21 @@
+# Server
+server.port=8064
+server.address=127.0.0.1
+
+# Eureka
+eureka.instance.hostname=localhost
+eureka.instance.prefer-ip-address=false
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
+# Gateway Route
+spring.cloud.gateway.server.webflux.routes[0].id=USER-SERVICE
+spring.cloud.gateway.server.webflux.routes[0].uri=lb://USER-SERVICE
+spring.cloud.gateway.server.webflux.routes[0].predicates[0]=Path=/users/**
+
+# Logging
+logging.level.org.springframework.cloud.gateway=DEBUG
+
+# Application Name
+spring.application.name=API-GATEWAY

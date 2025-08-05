@@ -1,0 +1,5 @@
+package com.lcwd.java.microservice.userservice.payload;
+
+public record UserDTO() {
+
+}

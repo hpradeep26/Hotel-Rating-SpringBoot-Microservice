@@ -1,0 +1,85 @@
+package com.lcwd.java.microservice.userservice.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.lcwd.java.microservice.userservice.exception.ResourceNotFoundException;
+import com.lcwd.java.microservice.userservice.external.services.HotelClient;
+import com.lcwd.java.microservice.userservice.external.services.RatingClient;
+import com.lcwd.java.microservice.userservice.model.Hotel;
+import com.lcwd.java.microservice.userservice.model.Rating;
+import com.lcwd.java.microservice.userservice.model.User;
+import com.lcwd.java.microservice.userservice.repository.UserRepository;
+
+import jakarta.annotation.PostConstruct;
+
+@Service
+public class UserServiceImpl implements UserService{
+
+	private final UserRepository userRepository;
+	
+	@Autowired
+	DiscoveryClient discoveryClient;
+	
+	@PostConstruct
+	public void test() {
+		discoveryClient.getInstances("RATING-SERVICE").forEach(
+				instance -> {
+					System.out.println("Resolved RATING-SERVICE to: " + instance.getUri());
+				}
+				);
+	}
+
+	@Autowired
+	RestTemplate restTemplate;
+	
+	@Autowired
+	HotelClient hotelService;
+	
+	@Autowired
+	RatingClient ratingService;
+
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@Override
+	public User save(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User getById(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User Not Found for Id"+userId));
+		//String url = "http://RATING-SERVICE/api/ratings/users/"+user.getUserId();
+		//call Rating Service
+		//Rating[] ratings = restTemplate.getForObject(url, Rating[].class);
+		List<Rating> ratings = ratingService.getUserRatings(user.getUserId());
+		for (Rating rating : ratings) {
+			//String hotelUrl = "http://HOTEL-SERVICE/api/hotels/"+rating.getHotelId();
+			//Hotel hotel = restTemplate.getForObject(hotelUrl, Hotel.class);
+			Hotel hotel = hotelService.getHotel(rating.getHotelId());
+			rating.setHotel(hotel);
+		}
+
+		user.setRatings(ratings);
+		return user;
+	}
+
+	@Override
+	public List<User> getAll() {
+		List<User> users= userRepository.findAll();
+		return users;
+	}
+
+	@Override
+	public void deleteUser(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User Not Found for Id"+userId));
+		userRepository.delete(user);
+	}
+
+}

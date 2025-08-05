@@ -1,0 +1,5 @@
+package com.lcwd.java.microservice.payload;
+
+public class ErrorMessage {
+
+}

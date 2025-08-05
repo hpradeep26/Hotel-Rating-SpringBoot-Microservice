@@ -1,0 +1,9 @@
+package com.lcwd.java.microservice.apigateway.config;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@EnableWe
+public class SecurityConfig {
+
+}

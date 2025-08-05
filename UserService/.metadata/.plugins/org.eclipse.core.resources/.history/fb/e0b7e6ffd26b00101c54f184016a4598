@@ -1,0 +1,5 @@
+package com.lcwd.java.microservice.hotelservice.controller;
+
+public class HotelController {
+
+}

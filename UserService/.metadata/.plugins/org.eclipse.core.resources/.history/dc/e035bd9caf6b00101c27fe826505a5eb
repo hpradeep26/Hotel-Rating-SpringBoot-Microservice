@@ -1,0 +1,19 @@
+package com.lcwd.java.microservice.ratingservice.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Hotels")
+public class Hotel {
+
+	
+	private Long hotelId;
+	
+	private String name;
+	
+	private String location;
+	
+	private String about;
+	
+}

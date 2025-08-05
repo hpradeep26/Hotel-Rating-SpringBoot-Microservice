@@ -1,0 +1,12 @@
+package com.lcwd.java.microservice.userservice.model;
+
+public class Rating {
+	
+	private Long ratingId;
+	private Long userId;
+	private Long hotelId;
+	private int rating;
+	private String feedback;
+	
+	
+}

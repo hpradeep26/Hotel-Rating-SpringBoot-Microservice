@@ -1,0 +1,40 @@
+package com.lcwd.java.microservice.hotelservice.service;
+
+import java.util.List;
+
+import com.lcwd.java.microservice.hotelservice.model.Hotel;
+import com.lcwd.java.microservice.hotelservice.repository.HotelRepository;
+
+public class HotelServiceImpl implements HotelService{
+	
+	private final HotelRepository hotelRepository;
+	
+	public HotelServiceImpl(HotelRepository hotelRepository) {
+		this.hotelRepository = hotelRepository;
+	}
+
+	@Override
+	public Hotel save(Hotel hotel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Hotel getById(Long Id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Hotel> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long Id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

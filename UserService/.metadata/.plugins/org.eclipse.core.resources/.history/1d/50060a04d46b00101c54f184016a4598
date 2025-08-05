@@ -1,0 +1,9 @@
+package com.lcwd.java.microservice.ratingservice.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.lcwd.java.microservice.ratingservice.model.Rating;
+
+public interface HotelRepository extends JpaRepository<Rating, Long> {
+
+}

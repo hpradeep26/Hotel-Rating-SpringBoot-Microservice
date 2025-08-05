@@ -1,0 +1,38 @@
+# Server
+server.port=8064
+server.address=127.0.0.1
+
+# Eureka
+eureka.instance.hostname=localhost
+eureka.instance.prefer-ip-address=false
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
+# Gateway Route
+spring.cloud.gateway.server.webflux.routes[0].id=USER-SERVICE
+spring.cloud.gateway.server.webflux.routes[0].uri=lb://USER-SERVICE
+spring.cloud.gateway.server.webflux.routes[0].predicates[0]=Path=/api/users/**
+#spring.cloud.gateway.server.webflux.routes[0].filters[0]=StripPrefix=1
+
+# Gateway Route
+spring.cloud.gateway.server.webflux.routes[1].id=HOTEL-SERVICE
+spring.cloud.gateway.server.webflux.routes[1].uri=lb://HOTEL-SERVICE
+spring.cloud.gateway.server.webflux.routes[1].predicates[0]=Path=/api/hotels/**
+#spring.cloud.gateway.server.webflux.routes[1].filters[0]=StripPrefix=1
+
+# Gateway Route
+spring.cloud.gateway.server.webflux.routes[2].id=RATING-SERVICE
+spring.cloud.gateway.server.webflux.routes[2].uri=lb://RATING-SERVICE
+spring.cloud.gateway.server.webflux.routes[2].predicates[0]=Path=/api/ratings/**
+
+# Logging
+logging.level.org.springframework.cloud.gateway=DEBUG
+logging.level.org.springframework.web: DEBUG
+# Application Name
+spring.application.name=API-GATEWAY
+
+okta.oauth2.issuer=https://dev-vi3kkx6lwevbylgu.us.auth0.com
+okta.oauth2.client-id=6HRQvMdXfQofIvYNXnM2k1julyqFImet
+okta.oauth2.client-secret=0gGCSQuCvwT0O9zETnIb3rLJKAnobVTMvYtVdk3LSEY415u5rk8ZJ2bkm8BVdgcz
+okta.oauth2.scopes= openid, profile, email, offline_access

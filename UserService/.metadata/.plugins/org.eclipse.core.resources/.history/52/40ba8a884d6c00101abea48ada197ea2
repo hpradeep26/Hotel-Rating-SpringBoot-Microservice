@@ -1,0 +1,61 @@
+package com.lcwd.java.microservice.userservice.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.lcwd.java.microservice.userservice.exception.ResourceNotFoundException;
+import com.lcwd.java.microservice.userservice.model.Hotel;
+import com.lcwd.java.microservice.userservice.model.Rating;
+import com.lcwd.java.microservice.userservice.model.User;
+import com.lcwd.java.microservice.userservice.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	private final UserRepository userRepository;
+	
+	@Autowired
+	RestTemplate restTemplate;
+	
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@Override
+	public User save(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User getById(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User Not Found for Id"+userId));
+		String url = "http://localhost:8063/api/ratings/users/"+user.getUserId();
+		//call Rating Service
+		Rating[] ratings = restTemplate.getForObject(url, Rating[].class);
+		
+		for (Rating rating : ratings) {
+			String hotelUrl = "http://localhost:8062/api/hotels/"+rating.getHotelId();
+			restTemplate.getForObject(hotelUrl, Hotel.class);
+		}
+		
+		user.setRatings(Arrays.asList(ratings););
+		return user;
+	}
+
+	@Override
+	public List<User> getAll() {
+		List<User> users= userRepository.findAll();
+		return users;
+	}
+
+	@Override
+	public void deleteUser(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User Not Found for Id"+userId));
+		userRepository.delete(user);
+	}
+
+}
