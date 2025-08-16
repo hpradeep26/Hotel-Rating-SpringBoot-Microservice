@@ -45,6 +45,7 @@ The system is designed as a set of loosely coupled microservices:
 
 ## 📂 Project Structure
 Hotel-Rating-SpringBoot-Microservice
+
 │── api-gateway/ # Spring Cloud Gateway + Okta OAuth2 + Spring Security
 
 │── Service-discovery/ # Eureka Server
