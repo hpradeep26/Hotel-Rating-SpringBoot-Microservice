@@ -73,11 +73,11 @@ Hotel-Rating-SpringBoot-Microservice
 1. Clone the repo:
    ```bash
    git clone https://github.com/hpradeep26/Hotel-Rating-SpringBoot-Microservice.git
-2. Configure MySQL in application.yml of Hotel and Rating services.
+2. Configure MySQL in application.yml of User, Hotel and Rating services.
 3. Update Okta credentials in application.yml for the Security Service.
 4. Run Discovery Service (Eureka).
 5. Run API Gateway.
-5. Run individual microservices (hotel-service, rating-service, etc.).
+5. Run individual microservices (User-service, hotel-service, rating-service, etc.).
 6. Access APIs through the API Gateway (default: http://localhost:8064).
 
 🎯 Learning Outcomes
